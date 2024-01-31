@@ -1,9 +1,12 @@
 ## Multi-granularity Correspondence Learning from Long-term Noisy Videos
 
-Norton (NOise Robust Temporal Optimal traNsport) is a contrastive model for long-term video learning that enjoys zero-shot transfer to retrieval/QA/sequence labeling style tasks.
+Norton (NOise Robust Temporal Optimal traNsport) is a contrastive model for long-term video learning that enjoys zero-shot transfer to retrieval/QA/sequence labeling style tasks, especially for long videos.
 > Yijie Lin, Jie Zhang, Zhenyu Huang, Jia Liu, Zujie Wen, Xi Peng, Multi-granularity Correspondence Learning from Long-term Noisy Videos, ICLR 2024 (oral).  [[paper]](https://arxiv.org/pdf/2401.16702.pdf) 
 
 Project page: [https://lin-yijie.github.io/projects/Norton/](https://lin-yijie.github.io/projects/Norton/).
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-granularity-correspondence-learning/long-video-retrieval-background-removed-on)](https://paperswithcode.com/sota/long-video-retrieval-background-removed-on?p=multi-granularity-correspondence-learning)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-granularity-correspondence-learning/zero-shot-video-retrieval-on-youcook2)](https://paperswithcode.com/sota/zero-shot-video-retrieval-on-youcook2?p=multi-granularity-correspondence-learning)
 
 
 ### Background
