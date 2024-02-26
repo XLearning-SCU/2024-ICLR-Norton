@@ -1,0 +1,23 @@
+slurm_config: big
+task_type: local_predict
+dataset:
+  split: test
+  bert_name: bert-base-uncased
+  anno_path: data/how2-align/htm_align.json
+  vfeat_dir: data/how2-align/
+  num_iso_layer: 12
+  max_video_len: 32
+  max_len: 96
+fairseq:
+  dataset:
+    batch_size: 256
+    valid_subset: test
+    num_workers: 2
+model:
+  model_cls: MMFusionSeparate
+  mm_encoder_cls: null
+  video_encoder_cls: MMBertForEncoder
+  text_encoder_cls: BertModel
+  num_hidden_video_layers: 6
+eval:
+  save_path: runs/retri/norton/

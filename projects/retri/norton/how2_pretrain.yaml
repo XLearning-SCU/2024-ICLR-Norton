@@ -1,0 +1,78 @@
+dataset:
+  video_processor: ShardedVideoRetriVideoProcessor
+  bert_name: bert-base-uncased
+  meta_processor: ShardedHow2VideoRetriMetaProcessor
+  train_path: data/how2/how2_s3d_train.lst
+  val_path: data/how2/how2_s3d_val.lst
+  vfeat_dir: data/feat/feat_how2_s3d_shard_small
+  text_processor: ShardedVideoRetriTextProcessor
+  tfeat_dir: data/feat/feat_how2_s3d_shard_small/sentencified_htm_1200k.bert-base-uncased.
+  aligner: VideoRetriOverlappedAligner
+  subsampling: 1
+  sampled_min_len: 8  # minimum of text tokens
+  sampled_max_len: 32 # maximum of text tokens
+  max_video_len: 16
+  max_len: 48 # maximum of text tokens + video frames
+  lazy_vfeat_mask: true
+  sampled_video_min_len: 3 # minimum of video frames
+  sampled_video_max_len: 16 # maximum of video frames
+  num_video_per_batch: 64
+  clip_per_video: 16
+fairseq:
+  common:
+    tensorboard_logdir: run
+    log_interval: 1000
+    fp16: true
+  dataset:
+    num_workers: 4
+    batch_size: 1
+  optimization:
+    lr:
+    - 1.0e-05
+    clip_norm: 2.0
+    optimizer: adam
+    adam_betas: (0.9, 0.98)
+    lr_scheduler: polynomial_decay
+    total_num_update: 1000000
+    warmup_updates: 1000
+    weight_decay: 0.0
+    ddp_backend: no_c10d
+    max_epoch: 6
+  checkpoint:
+    restore_file: runs/retri/videoclip/checkpoint_best.pt # VideoCLIP checkpoint for initialization
+    reset_dataloader: true
+    reset_meters: true
+    reset_optimizer: true
+    save_dir: runs/retri/norton/
+    save_interval_updates: 1024
+    keep_interval_updates: 2
+    keep_last_epochs: 50
+task_type: sweep_big
+slurm_config: big
+eval:
+  save_path: runs/retri/norton/
+model:
+  model_cls: MMFusionSeparate
+  mm_encoder_cls: null
+  video_encoder_cls: MMBertForEncoder
+  text_encoder_cls: BertModel
+  num_hidden_video_layers: 6
+  layernorm_only: True # we only post-pretrain the layer-norm parameters
+loss:
+  loss_cls: MMContraLoss # defined in nce.py
+  sequence_contrast:
+    sequence_contrast_weight: 0.1
+    threshold: 8 # 8 clip to form a long sequence in video-paragraph contrast
+    prompt_ratio: 0.3 # alignable prompt bucket, select the top 30% value
+    scale: 0.1 # epsilon of Sinkhorn-Knopp algorithm of video-paragraph contrast
+  sinkhorn_iterations: 50
+  beta: 0.3 # faulty negative exploitation
+  alpha_lse: 1 # log-sum-exp
+  fusion_weight: 0.5 # fuse the mean average and fine-grained measurement as the clip-caption similarity in video-paragraph contrast
+task: VideoRetriTask # below following the setting of VideoCLIP, searching the nearest videos as the hard negative samples
+retri_epoch: 1
+centroids: 512
+examples_per_cent_to_train: 48
+vectorpool_cls: VideoVectorPool
+retriever_cls: VectorRetriever
+num_cands: 192
