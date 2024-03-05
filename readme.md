@@ -1,11 +1,12 @@
 ## Multi-granularity Correspondence Learning from Long-term Noisy Videos
 
+
 [![Project Homepage](https://img.shields.io/badge/Project-Homepage-green)](https://lin-yijie.github.io/projects/Norton/)
 [![arXiv](https://img.shields.io/badge/arXiv-2401.16702-b31b1b.svg)](https://arxiv.org/pdf/2401.16702.pdf)
+[![zhihu](https://img.shields.io/badge/-WeChat@机器之心-000000?logo=wechat&logoColor=07C160)](https://mp.weixin.qq.com/s/q0kL62AM3G1wscTq92HIxA)
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-granularity-correspondence-learning-1/long-video-retrieval-background-removed-on)](https://paperswithcode.com/sota/long-video-retrieval-background-removed-on?p=multi-granularity-correspondence-learning-1)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-granularity-correspondence-learning-1/zero-shot-video-retrieval-on-youcook2)](https://paperswithcode.com/sota/zero-shot-video-retrieval-on-youcook2?p=multi-granularity-correspondence-learning-1)
-
 
 Norton (NOise Robust Temporal Optimal traNsport) is a contrastive model for long-term video learning that enjoys zero-shot transfer to retrieval/QA/sequence labeling style tasks, especially for long videos.
 > Yijie Lin, Jie Zhang, Zhenyu Huang, Jia Liu, Zujie Wen, Xi Peng, Multi-granularity Correspondence Learning from Long-term Noisy Videos, ICLR 2024 (oral).  [[paper]](https://arxiv.org/pdf/2401.16702.pdf) 
