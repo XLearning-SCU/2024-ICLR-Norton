@@ -1,5 +1,9 @@
 # Zero-shot Transfer and Finetuning
 
+**Updated News: The downstream datasets and annotation files (e.g., `msrvtt/MSRVTT_JSFUSION_test.csv`) are now available for download on Baidu Cloud Disk. Access them via this link:
+https://pan.baidu.com/s/1KM60oabsr8TflzsRLwy7xQ?pwd=6akb. After downloading, uncompress the files and place them in the directory `/data/`.**
+
+
 (If you are new to the ideas of `mmpt.processors`, see [README](README.md) first.)
 All finetuning datasets (specifically `processors`) are defined in `mmpt.processors.dsprocessor`.
 Given the complexity of different types of finetuning tasks, each task may have their own meta/video/text/aligner processors and `mmpt/evaluators/{Predictor,Metric}`.

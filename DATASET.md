@@ -31,8 +31,11 @@ python scripts/text_token_extractor/pretokenization.py scripts/text_token_extrac
 ```
 
 ### Downstream Youcook, MSRVTT etc.
-We plan to release our processed data soon. Please download the data to `data/youcook`, `data/coin`, and `data/msrvtt` accordingly. The file name please refer to the yaml file like `test_path: data/msrvtt/MSRVTT_JSFUSION_test.csv` in `projects/retri/norton/test_vtt_zs.yaml`. 
 
+**Downstream data link: https://pan.baidu.com/s/1KM60oabsr8TflzsRLwy7xQ?pwd=6akb. Please download the data to `data/youcook`, `data/coin`, and `data/msrvtt` accordingly. 
+See more details in see [endtask](endtask.md).**
+
+[//]: # (The file name please refer to the yaml file like `test_path: data/msrvtt/MSRVTT_JSFUSION_test.csv` in `projects/retri/norton/test_vtt_zs.yaml`. )
 
 We use the version of Youcook, MSRVTT, and [Coin](https://coin-dataset.github.io) come with Howto100M and MIL-NCE.
 MSRVTT-QA annotations can be downloaded [here]((https://drive.google.com/drive/folders/1_Wyr2VEWU4N-OgLBaQDGWXqD2TXXUBaF)), following ActBERT.
