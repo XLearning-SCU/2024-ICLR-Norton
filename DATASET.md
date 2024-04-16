@@ -1,34 +1,51 @@
 # Dataset
+The pre-training data structure is the same as [VideoCLIP](https://github.com/facebookresearch/fairseq/tree/main/examples/MMPT). For videos, we provide our preprocessing scripts under `scripts/video_feature_extractor` (adapted from `https://github.com/antoine77340/video_feature_extractor`); for text, we pre-tokenizing scripts under `scripts/text_token_extractor`.
 
-The pre-training data structure is the same as [VideoCLIP](https://github.com/facebookresearch/fairseq/tree/main/examples/MMPT). We understand video data are challenging to download and process, and plan to release our processed how2 data soon. 
+### Data downloading
+**The pre-training data (video.npy and text.json) are now available for download on Baidu Cloud Disk (around 474GB):
+https://pan.baidu.com/s/1b8nTw7-IzbDlJlakbVhwNA?pwd=nk6e. After downloading, uncompress the video features as below.**
+```bash
+cat Howto100_feature.tar.* > Howto100_feature.tar
+tar -zxvf Howto100_feature.tar
+```
+Then following the preprocessing steps below.
 
-For videos, we provide our preprocessing scripts under `scripts/video_feature_extractor` (adapted from `https://github.com/antoine77340/video_feature_extractor`); for text, we pre-tokenizing scripts under `scripts/text_token_extractor`.
 
 
-### S3D Feature Extraction
-We use pre-trained [S3D](https://github.com/antoine77340/S3D_HowTo100M) for video feature extraction. Please place the models as `pretrained_models/s3d_dict.npy` and `pretrained_models/s3d_howto100m.pth`.
-
-We implement a `PathBuilder` to automatically track video ids, source video paths to their feature locations (you may need `conda install -c anaconda pandas`). Decoding may need `pip install ffmpeg-python`.
 
 ### Howto100M
 [Howto100M](https://www.di.ens.fr/willow/research/howto100m/) is a large-scale video pre-training datasets. You may download videos by yourself and run preprocessing of our scripts. 
 
 Highlight of our preprocessing: (1) we use [sentencified_htm_1200k.json](http://www.robots.ox.ac.uk/~htd/tan/sentencified_htm_1200k.json) from [TAN](https://www.robots.ox.ac.uk/~vgg/research/tan/) ; (2) we shard video/text features using `SharedTensor` in `mmpt/utils/shardedtensor.py` for fast loading during training (faster than `h5py`).
 
-#### video
+#### S3D Feature Extraction (ignore this if you have downloaded the pre-training features)
+We use pre-trained [S3D](https://github.com/antoine77340/S3D_HowTo100M) for video feature extraction. Please place the models as `pretrained_models/s3d_dict.npy` and `pretrained_models/s3d_howto100m.pth`.
+
+We implement a `PathBuilder` to automatically track video ids, source video paths to their feature locations (you may need `conda install -c anaconda pandas`). Decoding may need `pip install ffmpeg-python`.
+
 To extract video features: edit and run `bash scripts/video_feature_extractor/how2/s3d.sh`. (consider to run this on multiple machines; by default, we store features in fp16 to save space and also for faster training).
 
-Split available video ids as `data/how2/how2_s3d_train.lst` and `data/how2/how2_s3d_val.lst`. We have provided our splits in `data/how2`.
+
+#### video
+
+Split available video ids as `data/how2/how2_s3d_train.lst` and `data/how2/how2_s3d_val.lst` (We have provided our splits in `data/how2`).
+
+Place the video features in `data/feat/feat_how2_s3d`.
 
 Lastly, pack video features into `ShardedTensor` using `python scripts/video_feature_extractor/shard_feature.py`.
 
 #### text
+Place the text json in `data/how2`.
+
 Transform `sentencified_htm_1200k.json` into `.kpl` using `python -m mmpt.processors.dedupprocessor`.
 
 Tokenize dedupped captions `data/how2/sentencified_htm_1200k.pkl` into sharded numpy arrays:  
 ```
 python scripts/text_token_extractor/pretokenization.py scripts/text_token_extractor/configs/bert-base-uncased.yaml
 ```
+
+Get ready for pre-training Norton!
+
 
 ### Downstream Youcook, MSRVTT etc.
 

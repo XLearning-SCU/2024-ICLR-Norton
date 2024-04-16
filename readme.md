@@ -25,12 +25,13 @@ We perform video-paragraph contrastive learning to capture long-term temporal co
 
 
 ### News
-- [2023-4-14] We are pleased to provide the feature for downstream tasks, see [endtask](endtask.md).
+- [2023-4-16] We provide the feature for pre-training, see [DATASET.md](DATASET.md).
+- [2023-4-14] We are pleased to provide the feature for downstream tasks, see [endtask.md](endtask.md).
 - [2023-1-16] Norton is accepted to ICLR 2024 as oral presentation.
 
 ### Todo
 - [x] Release Norton [checkpoint](https://drive.google.com/file/d/1ovUBCb-XSoD7bAFKAVa5w13yUqXmCpiS/view?usp=share_link).
-- [ ] Release pre-training data (30 fps S3D of Howto100M).
+- [x] Release pre-training data (30 fps S3D of Howto100M).
 - [x] Release downstream data.
 
 ## Get Started
