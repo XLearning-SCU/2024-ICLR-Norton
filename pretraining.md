@@ -8,7 +8,7 @@ Pretraining on Howto100M is heavy on IO since we have millions of videos or capt
 It is desirable to have an optimized preprocessing step before the actual dataloading.  
 
 We support data sharding to pack multiple videos into a shards of training data for both videos and captions. 
-(see [dataset](DATASET.md) for preprocessing, we will also release our preprocessed data soon).
+(see [dataset](DATASET.md) for preprocessing, we have also released our preprocessed data there).
 These shards will be mapped into memory to reduce the frequency of IO access on millions of files. See (processors starting with `Sharded*`).
 This will be the default config for a how2 dataset `projects/retri/norton/how2_pretrain.yaml`.
 
