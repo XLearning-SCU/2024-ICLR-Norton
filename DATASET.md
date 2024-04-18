@@ -6,7 +6,7 @@ The pre-training data structure is the same as [VideoCLIP](https://github.com/fa
 https://pan.baidu.com/s/1b8nTw7-IzbDlJlakbVhwNA?pwd=nk6e. After downloading, uncompress the video features as below.**
 ```bash
 cat Howto100_feature.tar.* > Howto100_feature.tar
-tar -zxvf Howto100_feature.tar
+tar -xvf Howto100_feature.tar
 ```
 Then following the preprocessing steps below.
 
